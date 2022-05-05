@@ -1,0 +1,20 @@
+{"customers": [
+    {
+        "customer name": "Mary Jane",
+        "account number": 1234,
+        "phone": "123-345-4567",
+        "balance": 2000,
+        "password": 1115
+        
+    },
+    {
+        "customer name": "James Porter",
+        "account number": 5678,
+        "phone": "123-345-4566",
+        "balance": 3000,
+        "password": 1117
+    }
+]}
+
+
+
