@@ -23,7 +23,7 @@ def addToMongo():
         print(user)
         db_customers.insert_one(user)
        
-#addToMongo()
+addToMongo()
 #banking application
 
 #Creating a new user
@@ -44,12 +44,8 @@ def createAccounts():
     }
     db_customers.insert_one(new_user)
 
-# def showAcctDetails():
-#     print("AccountNo:", accountNo)
-#     print("CustomerName:", custName)
-#     #print(pin:" ,pin)
-#     print("Mobile:", mobile)
 
+# making a deposit and updating the balance
 def deposit(phone,amount):
     user=db_customers.find_one({"phone":phone})
     print(user)
@@ -59,7 +55,7 @@ def deposit(phone,amount):
     print("Your balance is ",user["balance"])
 
 
-    #checkBalance()
+    #making a withdrawal and updating the balace 
 def withdraw(phone,amount):
     user=db_customers.find_one({"phone":phone})
     print("Your balance is ",user["balance"])
@@ -71,24 +67,27 @@ def withdraw(phone,amount):
         db_customers.update_one({"phone":phone},{"$set":{"balance":user["balance"]}})
     print("Your balance is ",user["balance"])
 
+#checking and displaying balance
 def checkBalance(phone):
     user=db_customers.find_one({"phone":phone})
     print("Your balance is ",user["balance"])
 
+# Deleting/removing accoutn
 def deleteAccount(phone):
     db_customers.delete_one({"phone":phone})
 
 
     #__main__#
+    #initializing the functions
 def main():
     print("Hello, Welcome to ABC Bank")
     while True:
-        print("please choose yes, no, or quit" )
+        print("please choose yes, no, or quit: " )
         
-        option= input("Are you an existing customer" )
+        option= input("Are you an existing customer : " )
         if option== "yes":
-            mobile= input("Please enter your phone #" )
-            password=input("Please enter your password" )
+            mobile= input("Please enter your phone # : " )
+            password=input("Please enter your password : " )
             
             if not db_customers.find_one({"phone":mobile}):
                 print("mobile is not correct")
@@ -99,17 +98,17 @@ def main():
                 while True:
 
                     print(" 2. Withdraw \n 3. Deposit \n 4. Check Balance \n 5.Delete account\n 6.Goodbye")  
-                    ch = int(input("Please make a selection from the main menu"))
+                    ch = int(input("Please make a selection from the main menu: "))
                 
 
                     if (ch==2):
                         print("Let's make a withdrawal")
-                        amnt =int(input("Enter amount to Withdraw"))
+                        amnt =int(input("Enter amount to Withdraw: "))
                         withdraw(mobile,amnt)
                     
                     elif (ch==3):
                         print("Let's make a deposit")
-                        amnt=int(input("Enter amount to deposit"))
+                        amnt=int(input("Enter amount to deposit: "))
                         deposit(mobile,amnt)
                     
 
@@ -133,5 +132,5 @@ def main():
         elif option=="quit":
             break
         else:
-            print("please choose yes, no, or quit")            
+            print("please choose yes, no, or quit: ")            
 main()
